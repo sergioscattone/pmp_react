@@ -1,8 +1,10 @@
 import React from 'react';
 import {
     AsyncStorage,
+    Button,
     StatusBar,
     View,
+    StyleSheet,
   } from 'react-native';
 
 class OtherScreen extends React.Component {
@@ -24,5 +26,13 @@ class OtherScreen extends React.Component {
       this.props.navigation.navigate('Auth');
     };
   }
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+  });
 
   export default OtherScreen;

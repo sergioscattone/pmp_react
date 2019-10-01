@@ -1,7 +1,9 @@
 import React from 'react';
 import {
     AsyncStorage,
+    Button,
     View,
+    StyleSheet,
   } from 'react-native';
 
 class HomeScreen extends React.Component {
@@ -27,5 +29,13 @@ class HomeScreen extends React.Component {
       this.props.navigation.navigate('Auth');
     };
   }
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+  });
 
   export default HomeScreen;

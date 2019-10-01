@@ -22,17 +22,14 @@ class SignInScreen extends React.Component {
         <View style={{margin:10}}>
           <Button title="Ingresar" onPress={this._signInAsync} />
         </View>
-        <Button title="Registrarse" onPress={this._registerAsync} />
+        <Button title="Registrarse" onPress={this._signInAsync} />
       </View>
     );
   }
 
   _signInAsync = async () => {
-    this.props.navigation.navigate('LoginScreen');
-  };
-
-  _registerAsync = async () => {
-    this.props.navigation.navigate('RegisterScreen');
+    await AsyncStorage.setItem('userToken', 'abc');
+    this.props.navigation.navigate('App');
   };
 }
 
