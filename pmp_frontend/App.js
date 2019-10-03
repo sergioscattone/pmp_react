@@ -4,8 +4,16 @@ import * as Font from 'expo-font';
 import React, { useState } from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { Provider } from 'react-redux';
+import creatSagaMiddleware from 'redux-saga';
+import allReducers from './reducers';
+import { createStore, applyMiddleware } from 'redux';
 
 import AppNavigator from './navigation/AppNavigator';
+
+const sagaMiddleware = creatSagaMiddleware()
+let store = createStore(allReducers, applyMiddleware(sagaMiddleware))
+sagaMiddleware.run(rootSaga)
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
@@ -20,10 +28,12 @@ export default function App(props) {
     );
   } else {
     return (
-      <View style={styles.container}>
-        {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-        <AppNavigator />
-      </View>
+      <Provider store={store}>
+        <View style={styles.container}>
+          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+          <AppNavigator />
+        </View>
+      </Provider>
     );
   }
 }
