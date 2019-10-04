@@ -1,13 +1,14 @@
-import { AppLoading } from 'expo';
-import { Asset } from 'expo-asset';
-import * as Font from 'expo-font';
-import React, { useState } from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { Provider } from 'react-redux';
-import creatSagaMiddleware from 'redux-saga';
-import allReducers from './reducers';
-import { createStore, applyMiddleware } from 'redux';
+import { AppLoading } from 'expo'
+import { Asset } from 'expo-asset'
+import * as Font from 'expo-font'
+import React, { useState } from 'react'
+import { Platform, StatusBar, StyleSheet, View } from 'react-native'
+import { Ionicons } from '@expo/vector-icons'
+import { Provider } from 'react-redux'
+import creatSagaMiddleware from 'redux-saga'
+import allReducers from './reducers'
+import { createStore, applyMiddleware } from 'redux'
+import { rootSaga } from './sagas'
 
 import AppNavigator from './navigation/AppNavigator';
 

@@ -1,9 +1,10 @@
 import * as types from '../actions/types';
 import appState from '../constants/initialState';
+import { AsyncStorage } from 'react-native';
 
 const loginReducer = (state = appState.login, action) => {
     switch (action.type) {
-        case types.SET_USER_INFO:
+        case types.LOGIN:
             return { ...state, ...{ userInfo: action.data } }
         default:
             return state

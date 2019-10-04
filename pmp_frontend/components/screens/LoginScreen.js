@@ -14,6 +14,9 @@ class LoginScreen extends React.Component {
   state = { username: '', password: '' }
 
   render() {
+
+    this._loginRedirection()
+
     return (
       <View style={styles.container}>
         <Text style={{ margin: 10}}>Email: </Text>
@@ -30,22 +33,23 @@ class LoginScreen extends React.Component {
         />
         <View style={{margin:10}}>
           <Button title="Aceptar"
-          onPress={() => this._login({ username: this.state.username, password: this.state.password })} 
+          onPress={() => this.props.login(this.state.username, this.state.password)} 
         />
         </View>
       </View>
     );
   }
 
-  _login = (data) => {
-    console.log(data.username)
-    console.log(data.password)
-    //this.props.navigation.navigate('Other');
-  };
-
   _signOutAsync = async () => {
     await AsyncStorage.clear();
     this.props.navigation.navigate('Auth');
+  };
+
+  _loginRedirection = async () => {
+    const jwtToken = await AsyncStorage.getItem('jwt');
+    if (jwtToken) {
+      this.props.navigation.navigate('App');
+    }
   };
 }
 
@@ -59,12 +63,15 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
   return {}
 }
+
 const mapDispatchToProps = (dispatch) => {
-  return {
-      actions: {
-          login: bindActionCreators(loginActions, dispatch)
-      }
-  }
-}
+    return {
+      login: (username, password) => dispatch({
+        type: 'LOGIN',
+        username,
+        password,
+      }),
+   };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
