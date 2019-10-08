@@ -1,29 +1,8 @@
-import { all, fork } from 'redux-saga/effects';
-import { watchIncreaseCounter, watchDecreaseCounter } from './counterSagas';
-import { login } from './loginSagas';
+import { loginSagas } from './loginSagas';
+import { all } from 'redux-saga/effects'
 
-export function* rootSaga () {
+export default function* rootSaga () {
   yield all([
-    fork(watchIncreaseCounter),
-    fork(watchDecreaseCounter),
-    fork(login)
+    ...loginSagas,
   ]);
 };
-
-/*
-import { put, takeLatest, all } from 'redux-saga/effects';
-function* fetchNews() {
-  const json = yield fetch('https://newsapi.org/v1/articles? 
-        source= cnn&apiKey=c39a26d9c12f48dba2a5c00e35684ecc')
-        .then(response => response.json(), );    
-  yield put({ type: "NEWS_RECEIVED", json: json.articles, });
-}
-function* actionWatcher() {
-     yield takeLatest('GET_NEWS', fetchNews)
-}
-export default function* rootSaga() {
-   yield all([
-   actionWatcher(),
-   ]);
-}
-*/

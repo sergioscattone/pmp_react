@@ -8,7 +8,7 @@ import { Provider } from 'react-redux'
 import creatSagaMiddleware from 'redux-saga'
 import allReducers from './reducers'
 import { createStore, applyMiddleware } from 'redux'
-import { rootSaga } from './sagas'
+import rootSaga from './sagas'
 
 import AppNavigator from './navigation/AppNavigator';
 

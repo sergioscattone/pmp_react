@@ -19,6 +19,9 @@ class LoginScreen extends React.Component {
 
     return (
       <View style={styles.container}>
+        {this.props.message && 
+          <Text style={{ margin: 10}}>{this.props.message}</Text>
+        }
         <Text style={{ margin: 10}}>Email: </Text>
         <TextInput
           style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
@@ -53,6 +56,14 @@ class LoginScreen extends React.Component {
   };
 }
 
+LoginScreen.defaultProps = {
+	message: '',
+}
+
+LoginScreen.propTypes = {
+	message: PropTypes.string,
+}
+
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
@@ -61,7 +72,9 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-  return {}
+  return {
+    message: state.message,
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
